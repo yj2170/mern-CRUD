@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: mongo
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    container_name: backend
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mern-crud
+    volumes:
+      - ./backend:/app
+    working_dir: /app
+    command: ["node", "server.js"]
+
+volumes:
+  mongo-data:
