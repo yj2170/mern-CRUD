@@ -1,99 +1,55 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { buttonStyle } from './utils/styles';
+
+import PostList from './components/PostList';
+import CreatePost from './components/CreatePost';
+import EditPost from './components/EditPost';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
 
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [form, setForm] = useState({ title: '', content: '' });
-  const [editId, setEditId] = useState(null);
+  const [auth, setAuth] = useState(false);
 
-  const fetchPosts = async () => {
-    try {
-      const res = await axios.get('http://localhost:5000/posts');
-      setPosts(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
+  // 첫 진입 시 토큰 유무 확인
   useEffect(() => {
-    fetchPosts();
+    const token = localStorage.getItem('token');
+    setAuth(!!token);
   }, []);
 
-  // 입력값 변경
-  const onChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  // create or edit
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      if (editId) {
-        await axios.put(`http://localhost:5000/posts/${editId}`, form);
-        setEditId(null);
-      } else {
-        await axios.post('http://localhost:5000/posts', form);
-      }
-      setForm({ title: '', content: '' });
-      fetchPosts();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // delete
-  const onDelete = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/posts/${id}`);
-      fetchPosts();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  // edit
-  const onEdit = (post) => {
-    setEditId(post._id);
-    setForm({ title: post.title, content: post.content });
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setAuth(false);
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: 'auto', padding: 20 }}>
-      <h1>Board</h1>
-      <form onSubmit={onSubmit} style={{ marginBottom: 20 }}>
-        <input
-          name="title"
-          placeholder="enter the title"
-          value={form.title}
-          onChange={onChange}
-          required
-          style={{ width: '100%', marginBottom: 10, padding: 8 }}
-        />
-        <textarea
-          name="content"
-          placeholder="enter the content"
-          value={form.content}
-          onChange={onChange}
-          required
-          rows={5}
-          style={{ width: '100%', marginBottom: 10, padding: 8 }}
-        />
-        <button type="submit">{editId ? 'edit' : 'submit'}</button>
-        {editId && <button type="button" onClick={() => { setEditId(null); setForm({ title: '', content: '' }); }}>cancel</button>}
-      </form>
+    <Router>
+      <div style={{ padding: 20 }}>
+        <h1>Blog</h1>
+        <nav style={{ marginBottom: '20px' }}>
+          <Link to="/" style = {buttonStyle}>Home</Link>{' '}
+          {auth ? (
+            <>
+              | <Link to="/create" style = {buttonStyle}>Create</Link>{' '}
+              | <button onClick={handleLogout} style = {buttonStyle}>Logout</button>
+            </>
+          ) : (
+            <>
+              | <Link to="/login" style = {buttonStyle}>Login</Link>{' '}
+              | <Link to="/signup" style = {buttonStyle}>Sign Up</Link>
+            </>
+          )}
+        </nav>
 
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {posts.map(post => (
-          <li key={post._id} style={{ border: '1px solid #ddd', marginBottom: 10, padding: 10 }}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            <button onClick={() => onEdit(post)}>edit</button>
-            <button onClick={() => onDelete(post._id)} style={{ marginLeft: 10 }}>delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+        <Routes>
+          <Route path="/" element={<PostList />} />
+          <Route path="/create" element={<CreatePost />} />
+          <Route path="/edit/:id" element={<EditPost />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login setAuth={setAuth} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
