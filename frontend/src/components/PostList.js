@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { buttonStyle } from '../utils/styles';
+import '../index.css';
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -21,18 +21,19 @@ const PostList = () => {
   }, []);
 
   return (
-    <div>
-      Welcome to my playground
-      <ul>
-        {posts.map((post) => (
-          <li key={post._id}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            <Link to={`/edit/${post._id}`} style = {buttonStyle}>Edit</Link>{' '}
-            | <button onClick={() => deletePost(post._id)} style = {buttonStyle}>Delete</button>
-          </li>
-        ))}
-      </ul>
+    <div className="container">
+      {posts.map((post) => (
+        <div key={post._id} className="post-card">
+          <h3>{post.title}</h3>
+          <p>{post.content}</p>
+          <div className="post-button-group">
+            <Link to={`/edit/${post._id}`}>
+              <button>Edit</button>
+            </Link>
+            <button onClick={() => deletePost(post._id)}>Delete</button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

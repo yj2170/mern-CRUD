@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { buttonStyle } from '../utils/styles';
+import '../index.css';
 
 const EditPost = () => {
   const [title, setTitle] = useState('');
@@ -41,7 +41,7 @@ const EditPost = () => {
       <h2>Edit Post</h2>
       <input value={title} onChange={(e) => setTitle(e.target.value)} /><br />
       <textarea value={content} onChange={(e) => setContent(e.target.value)} /><br />
-      <button onClick={updatePost} style = {buttonStyle}>Update</button>
+      <button onClick={updatePost}>Update</button>
     </div>
   );
 };

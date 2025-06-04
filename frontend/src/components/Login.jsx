@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { buttonStyle } from '../utils/styles';
+import '../index.css';
 
 const Login = ({ setAuth }) => {
   const [username, setUsername] = useState('');
@@ -23,9 +23,9 @@ const Login = ({ setAuth }) => {
   return (
     <div>
       <h2>Login</h2>
-      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin} style = {buttonStyle}>login</button>
+      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} /><br />
+      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
+      <button onClick={handleLogin}>login</button>
     </div>
   );
 };

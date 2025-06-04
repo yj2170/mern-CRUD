@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { buttonStyle } from '../utils/styles';
+import '../index.css';
 
 const SignUp = () => {
   const [username, setUsername] = useState('');
@@ -22,9 +22,9 @@ const SignUp = () => {
   return (
     <div>
       <h2>Sign Up</h2>
-      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleSignUp} style = {buttonStyle}>signup</button>
+      <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} /><br />
+      <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
+      <button onClick={handleSignUp}>sign up</button>
     </div>
   );
 };

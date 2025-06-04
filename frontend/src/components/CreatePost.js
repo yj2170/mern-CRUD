@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { buttonStyle, inputStyle, textareaStyle } from '../utils/styles';
+import '../index.css';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('You should login to create post.');
+      navigate('/');
+    }
+  }, [navigate]);
 
   const submitPost = async () => {
     await axios.post('http://localhost:5000/posts', { title, content });
@@ -20,15 +28,13 @@ const CreatePost = () => {
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        style = {inputStyle}
       /><br />
       <textarea
         placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        style = {textareaStyle}
       /><br />
-      <button onClick={submitPost} style = {buttonStyle}>Submit</button>
+      <button onClick={submitPost}>Submit</button>
     </div>
   );
 };
