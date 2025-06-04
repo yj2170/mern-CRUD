@@ -14,21 +14,21 @@ const Layout = ({ auth, setAuth, children }) => {
     <>
       <header className="header">
         <nav className="nav">
-          <Link to="/">Home</Link>
+          <button><Link to="/">Home</Link></button>
           {auth ? (
             <>
-              <Link to="/create">Create</Link>
+              <button><Link to="/create">Create</Link></button>
               <button onClick={handleLogout}>Logout</button>
             </>
           ) : (
             <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+              <button><Link to="/login">Login</Link></button>
+              <button><Link to="/signup">Sign Up</Link></button>
             </>
           )}
         </nav>
       </header>
-      <main className="container">
+      <main className="content-container">
         <h1 className="welcome">Welcome to my playground</h1>
         {children}
       </main>

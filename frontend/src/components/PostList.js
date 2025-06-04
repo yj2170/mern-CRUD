@@ -11,27 +11,18 @@ const PostList = () => {
     setPosts(res.data);
   };
 
-  const deletePost = async (id) => {
-    await axios.delete(`http://localhost:5000/posts/${id}`);
-    fetchPosts();
-  };
-
   useEffect(() => {
     fetchPosts();
   }, []);
 
   return (
-    <div className="container">
+    <div className="content-container">
       {posts.map((post) => (
-        <div key={post._id} className="post-card">
-          <h3>{post.title}</h3>
-          <p>{post.content}</p>
-          <div className="post-button-group">
-            <Link to={`/edit/${post._id}`}>
-              <button>Edit</button>
-            </Link>
-            <button onClick={() => deletePost(post._id)}>Delete</button>
-          </div>
+        <div className="post-card" key={post._id}>
+          <Link to={`/posts/${post._id}`}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+          </Link>
         </div>
       ))}
     </div>

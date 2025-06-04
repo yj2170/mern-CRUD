@@ -12,7 +12,7 @@ const Login = ({ setAuth }) => {
   const handleLogin = async () => {
     try {
       const res = await axios.post('http://localhost:5000/auth/login', { username, password });
-      localStorage.setItem('token', res.data.token);  // JWT 저장
+      localStorage.setItem('token', res.data.token);
       setAuth(true);
       navigate('/');
     } catch (err) {
@@ -21,7 +21,7 @@ const Login = ({ setAuth }) => {
   };
 
   return (
-    <div>
+    <div className="center-contatiner">
       <h2>Login</h2>
       <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} /><br />
       <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} /><br /><br />

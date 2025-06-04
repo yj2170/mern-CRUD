@@ -20,7 +20,7 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="center-contatiner">
       <h2>Sign Up</h2>
       <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} /><br />
       <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} /><br /><br />

@@ -13,7 +13,9 @@ app.use(express.json());
 app.use('/posts', postsRoute);
 app.use('/auth', authRoute);
 
-mongoose.connect('mongodb://localhost:27017/mern-crud')
+const mongoUri = process.env.MONGO_URI || 'mongodb://mongo:27017/mern-crud';
+
+mongoose.connect(mongoUri)
   .then(() => {
     app.listen(5000, () => console.log('Backend running on http://localhost:5000'));
   })

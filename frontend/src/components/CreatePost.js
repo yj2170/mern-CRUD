@@ -22,7 +22,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div>
+    <div className="content-container">
       <h2>Create Post</h2>
       <input
         placeholder="Title"

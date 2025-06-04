@@ -59,10 +59,22 @@ h1, h2, h3 {
   margin-bottom: 12px;
 }
 
-.container {
+.content-container {
   max-width: 800px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 20px;
+}
+
+.center-container {
+  max-width: 800px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
@@ -81,13 +93,23 @@ h1, h2, h3 {
   margin-bottom: 24px;
 }
 
+.post-card {
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 24px;
+  background-color: white;
+  margin-bottom: 24px;
+  transition: transform 0.2s;
+}
+
 .post-button-group {
   display: flex;
   gap: 12px;
   margin-top: 12px;
 }
 
-/* 상단 메뉴 */
 .header {
   background-color: #f8f8f8;
   border-bottom: 1px solid #e2e2e2;
@@ -116,4 +138,11 @@ h1, h2, h3 {
 
 .nav a:hover, .nav button:hover {
   color: #0051a8;
+}
+
+.welcome {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
 }

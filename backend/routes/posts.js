@@ -13,6 +13,16 @@ router.post('/', async (req, res) => {
   res.status(201).json(post);
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post) return res.status(404).json({ message: 'Post not found' });
+    res.json(post);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 router.put('/:id', async (req, res) => {
   const post = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.json(post);
