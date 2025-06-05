@@ -23,11 +23,6 @@ const CreatePost = () => {
     return;
     }
 
-    /******* */
-    console.log('Submitting:', { title, content });
-    console.log("Token:", token);
-    /******** */
-
     try {
       await axios.post('http://localhost:5000/posts', { title, content },
         {
