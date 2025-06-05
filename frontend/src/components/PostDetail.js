@@ -12,19 +12,19 @@ const PostDetail = () => {
     const token = localStorage.getItem('token');
     if (token) {
         const payload = JSON.parse(atob(token.split('.')[1]));
-        setCurrentUserId(payload.userId);
+        setCurrentUserId(payload.id);
     }
 
     const fetchPost = async () => {
         try {
             const res = await axios.get(`http://localhost:5000/posts/${id}`);
+            console.log('Fetched post:', res.data);
             setPost(res.data);
         } catch (err) {
             alert('Failed to load post.');
             navigate('/');
         }
     };
-
     fetchPost();
   }, [id, navigate]);
 

@@ -29,9 +29,10 @@ const EditPost = () => {
         setContent(res.data.content);
 
         const payload = JSON.parse(atob(token.split('.')[1]));
-        const currentUserId = payload.userId;
+        const currentUserId = payload.id;
+        const authorId = typeof res.data.author === 'object' ? res.data.author._id : res.data.author;
 
-        if (res.data.author !== currentUserId) {
+        if (authorId !== currentUserId) {
           alert('You are not allowed to edit.');
           navigate('/');
         }

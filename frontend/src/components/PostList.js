@@ -22,6 +22,7 @@ const PostList = () => {
           <Link to={`/posts/${post._id}`}>
             <h3>{post.title}</h3>
             <p>{post.content}</p>
+            <p>By {post.author?.username || 'Unknown'}</p>
           </Link>
         </div>
       ))}

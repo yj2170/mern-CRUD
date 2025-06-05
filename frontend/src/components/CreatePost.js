@@ -17,9 +17,33 @@ const CreatePost = () => {
   }, [navigate]);
 
   const submitPost = async () => {
-    await axios.post('http://localhost:5000/posts', { title, content });
-    navigate('/');
+    const token = localStorage.getItem('token');
+    if (!token) {
+    alert('You are not authorized to create a post.');
+    return;
+    }
+
+    /******* */
+    console.log('Submitting:', { title, content });
+    console.log("Token:", token);
+    /******** */
+
+    try {
+      await axios.post('http://localhost:5000/posts', { title, content },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      navigate('/');
+    } catch (err) {
+      alert('Post creation failed.');
+      console.error(err);
+    }
   };
+  
 
   return (
     <div className="content-container">

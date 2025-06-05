@@ -15,12 +15,12 @@ const SignUp = () => {
       alert('Now you are the member!');
       navigate('/login');
     } catch (err) {
-      alert('Failed to signup.');
+      alert('Failed to signup. (already exists)');
     }
   };
 
   return (
-    <div className="center-contatiner">
+    <div className="center-container">
       <h2>Sign Up</h2>
       <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} /><br />
       <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
