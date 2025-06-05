@@ -21,11 +21,11 @@ const Login = ({ setAuth }) => {
   };
 
   return (
-    <div className="center-container">
-      <h2>Login</h2>
+    <div className="content-container">
+      <h2><strong>Login</strong></h2>
       <input placeholder="Username" onChange={(e) => setUsername(e.target.value)} /><br />
       <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
-      <button onClick={handleLogin}>login</button>
+      <button onClick={handleLogin}><strong>login</strong></button>
     </div>
   );
 };

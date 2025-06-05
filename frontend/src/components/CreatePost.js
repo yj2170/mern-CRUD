@@ -47,7 +47,7 @@ const CreatePost = () => {
 
   return (
     <div className="content-container">
-      <h2>Create Post</h2>
+      <h2><strong>Create Post</strong></h2>
       <input
         placeholder="Title"
         value={title}
@@ -58,7 +58,7 @@ const CreatePost = () => {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       /><br />
-      <button onClick={submitPost}>Submit</button>
+      <button onClick={submitPost}><strong>Submit</strong></button>
     </div>
   );
 };

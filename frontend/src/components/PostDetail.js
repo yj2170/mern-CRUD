@@ -45,17 +45,26 @@ const PostDetail = () => {
 
   return (
     <div className="content-container">
-        <h2>{post.title}</h2>
-        <p>{post.content}</p>
+        <div className="post-card">
+            <h2>{post.title}</h2>
+            <p>{post.content}</p>
 
-        {String(post.author?._id || post.author) === String(currentUserId) && (
-            <div className="post-button-group">
-                <Link to={`/edit/${post._id}`}>
-                    <button>Edit</button>
-                </Link>
-                <button onClick={deletePost}>Delete</button>
+            <div className="post-footer"> 
+                <p className="author-text">
+                By {post.author?.username} | Posted on {new Date(post.createdAt).toLocaleString()}
+                </p>
+
+                {currentUserId && String(post.author?._id || post.author) === String(currentUserId) && (
+                <div className="post-button-group">
+                    <Link to={`/edit/${post._id}`}>
+                    <button><strong>Edit</strong></button>
+                    </Link>
+                    <button onClick={deletePost}><strong>Delete</strong></button>
+                </div>
+                )}
             </div>
-        )}
+        </div>
+        <Link to={`/`}><button><strong>Back to home</strong></button></Link>
     </div>
   );
 };

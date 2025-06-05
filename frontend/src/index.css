@@ -24,7 +24,7 @@ a:hover {
 button {
   padding: 10px 20px;
   border: none;
-  background-color: #007aff;
+  background-color: #0048ff;
   color: white;
   border-radius: 12px;
   font-weight: 500;
@@ -63,6 +63,13 @@ h1, h2, h3 {
   max-width: 800px;
   margin: 40px auto;
   padding: 20px;
+  text-align: center;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .center-container {
@@ -77,17 +84,11 @@ h1, h2, h3 {
   align-items: center;
 }
 
-.card {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  padding: 24px;
-  background-color: white;
-  margin-bottom: 24px;
-}
-
 .post-card {
   width: 100%;
   max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
   padding: 24px;
@@ -98,8 +99,8 @@ h1, h2, h3 {
 
 .post-button-group {
   display: flex;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .header {
@@ -123,7 +124,7 @@ h1, h2, h3 {
   background: none;
   border: none;
   cursor: pointer;
-  color: #007aff;
+  color: #0048ff;
   font-size: 16px;
   transition: color 0.2s;
 }
@@ -134,7 +135,8 @@ h1, h2, h3 {
 
 .welcome {
   margin-bottom: 20px;
-  font-size: 28px;
+  color: #0048ff;
+  font-size: 32px;
   font-weight: 600;
   text-align: center;
 }
@@ -144,4 +146,15 @@ h1, h2, h3 {
   font-size: 14px;
   color: #555;
   text-align: right;
+}
+
+.back-button {
+  align-self: center;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
 }

@@ -24,7 +24,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+      <Router>
       <Layout auth={auth} setAuth={setAuth}>
         <Routes>
           <Route path="/" element={<PostList />} />
@@ -35,7 +35,7 @@ function App() {
           <Route path="/login" element={<Login setAuth={setAuth} />} />
         </Routes>
       </Layout>
-    </Router>
+      </Router>
   );
 }
 
